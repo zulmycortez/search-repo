@@ -5,7 +5,7 @@ export const ProfileContext = React.createContext({
   profiles: [],
 });
 
-function ProfilesReducer(state, action) {
+const ProfilesReducer = (state, action) => {
   let profiles;
 
   switch (action.type) {
@@ -22,9 +22,9 @@ function ProfilesReducer(state, action) {
     default:
       throw new Error();
   }
-}
+};
 
-function ProfilesContextProvider({ children }) {
+const ProfilesContextProvider = ({ children }) => {
   const [state, dispatch] = React.useReducer(ProfilesReducer, {
     profiles: mockProfiles,
   });
@@ -32,6 +32,6 @@ function ProfilesContextProvider({ children }) {
   return (
     <ProfileContext.Provider value={{ ...state, dispatch }}>{children}</ProfileContext.Provider>
   );
-}
+};
 
 export default ProfilesContextProvider;

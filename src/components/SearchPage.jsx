@@ -1,4 +1,5 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import { ProfileContext } from './ProfilesContextProvider';
 import MinimalButton from './MinimalButton';
 import Header from './Header';
@@ -56,6 +57,7 @@ class SearchPage extends React.Component {
             ))}
           </div>
         </main>
+        <Outlet />
       </React.Fragment>
     );
   }

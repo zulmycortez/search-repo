@@ -1,6 +1,6 @@
 import React from 'react';
 
-function MinimalButton({ children, onClick, style, ...props }) {
+const MinimalButton = ({ children, onClick, style, ...props }) => {
   return (
     <button
       {...props}
@@ -10,6 +10,6 @@ function MinimalButton({ children, onClick, style, ...props }) {
       {children}
     </button>
   );
-}
+};
 
 export default MinimalButton;
