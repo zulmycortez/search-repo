@@ -10,9 +10,8 @@ const App = () => {
     <ProfilesContextProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<SearchPage />}>
-            <Route path=":id" element={<ProfilePage />} />
-          </Route>
+          <Route path="/" element={<SearchPage />} />
+          <Route path="/profile/:id" element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
     </ProfilesContextProvider>

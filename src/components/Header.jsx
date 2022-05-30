@@ -1,15 +1,10 @@
-import React from 'react';
+import HeaderStyle from './HeaderStyle';
 
 const Header = () => {
   return (
-    <header
-      style={{
-        borderBottom: `1px solid #efefef`,
-        padding: '16px',
-      }}
-    >
+    <HeaderStyle>
       <img src="./logo.svg" alt="match" width="110" />
-    </header>
+    </HeaderStyle>
   );
 };
 

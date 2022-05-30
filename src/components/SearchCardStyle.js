@@ -1,9 +1,11 @@
 import styled from 'styled-components';
 
-const SearchCardStyle = styled.div`
+const SearchCardStyle = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  border: none;
+  background-color: transparent;
   .__search-card-content {
     border: 1px solid lightgray;
     border-radius: 8;
