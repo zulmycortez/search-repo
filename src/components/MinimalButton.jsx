@@ -1,14 +1,11 @@
 import React from 'react';
+import MinimalButtonStyle from './MinimalButtonStyle';
 
 const MinimalButton = ({ children, onClick, style, ...props }) => {
   return (
-    <button
-      {...props}
-      onClick={onClick}
-      style={{ background: 'transparent', border: 0, cursor: 'pointer', margin: 8, ...style }}
-    >
+    <MinimalButtonStyle onClick={onClick} {...props}>
       {children}
-    </button>
+    </MinimalButtonStyle>
   );
 };
 
