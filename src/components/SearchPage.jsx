@@ -1,5 +1,4 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
 import { toolbarOptions } from '../constants/toolbarOptions';
 import { ProfileContext } from './ProfilesContextProvider';
 import MinimalButton from './MinimalButton';
@@ -54,7 +53,6 @@ class SearchPage extends React.Component {
             ))}
           </div>
         </SearchPageStyle>
-        <Outlet />
       </React.Fragment>
     );
   }
