@@ -1,6 +1,6 @@
 export const colors = {
   grays: {
-    001: '',
-    002: '',
+    1: 'lightgray',
+    2: '#efefef',
   },
 };

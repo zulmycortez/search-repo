@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { colors } from 'styles.js/colors';
+import { gutters } from 'styles.js/gutters';
 
 const SearchCardStyle = styled.button`
   display: flex;
@@ -7,9 +9,9 @@ const SearchCardStyle = styled.button`
   border: none;
   background-color: transparent;
   .__search-card-content {
-    border: 1px solid lightgray;
+    border: 1px solid ${colors.grays[1]};
     border-radius: 8;
-    box-shadow: 0 3px 6px lightgray, 0 3px 6px;
+    box-shadow: 0 3px 6px ${colors.grays[1]}, 0 3px 6px;
     overflow: hidden;
   }
   .__search-card-avatar {
@@ -25,7 +27,7 @@ const SearchCardStyle = styled.button`
     overflow: hidden;
   }
   .__search-card-details {
-    margin: 8px;
+    margin: ${gutters[1]};
     display: flex;
     flex-direction: column;
     .__details-header {
