@@ -1,9 +1,11 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { toolbarOptions } from '../constants/toolbarOptions';
 import { ProfileContext } from './ProfilesContextProvider';
 import MinimalButton from './MinimalButton';
 import Header from './Header';
 import SearchCard from './SearchCard';
+import SearchPageStyle from './SearchPageStyle';
 
 class SearchPage extends React.Component {
   static contextType = ProfileContext;
@@ -16,35 +18,29 @@ class SearchPage extends React.Component {
     this.context.dispatch({ type: 'descending' });
   };
 
+  toolbarEvents = {
+    sortAscending: this.handleSortAscending,
+    sortDescending: this.handleSortDescending,
+  };
+
   render() {
     const { profiles = [] } = this.context;
 
     return (
       <React.Fragment>
         <Header />
-
-        <main style={{ margin: 24 }}>
-          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <MinimalButton disabled>
-              <img src="filter.svg" width={22} alt="filter" />
-            </MinimalButton>
-
-            <MinimalButton onClick={this.handleSortAscending}>
-              <img src="./ascending.svg" width={22} alt="Sort ascending" />
-            </MinimalButton>
-
-            <MinimalButton onClick={this.handleSortDescending}>
-              <img src="./descending.svg" width={22} alt="Sort descending" />
-            </MinimalButton>
+        <SearchPageStyle>
+          <div className="__profile-page-toolbar">
+            {toolbarOptions.map((option) => {
+              const { disabled, key, alt, imgSrc } = option;
+              return (
+                <MinimalButton key={key} disabled={disabled} onClick={this.toolbarEvents[key]}>
+                  <img src={imgSrc} width={22} alt={alt}></img>
+                </MinimalButton>
+              );
+            })}
           </div>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr 1fr 1fr 1fr',
-              gridGap: '16px',
-            }}
-          >
+          <div className="__profile-page-grid">
             {profiles.map((profile) => (
               <SearchCard
                 key={profile.id}
@@ -56,7 +52,7 @@ class SearchPage extends React.Component {
               />
             ))}
           </div>
-        </main>
+        </SearchPageStyle>
         <Outlet />
       </React.Fragment>
     );
