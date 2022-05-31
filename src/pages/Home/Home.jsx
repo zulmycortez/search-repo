@@ -1,13 +1,12 @@
 import React from 'react';
-import { toolbarOptions } from '../constants/toolbarOptions';
-import { ProfileContext } from './ProfilesContextProvider';
-import MinimalButton from './MinimalButton';
-import Header from './Header';
-import SearchCard from './SearchCard';
-import SearchPageStyle from './SearchPageStyle';
+import { toolbarOptions } from 'constants/toolbarOptions';
+import { DrinkContext } from 'providers/DrinksContextProvider';
+import { MinimalButton, Header } from 'components';
+import HomeCard from './components/HomeCard';
+import HomeStyle from './HomeStyle';
 
-class SearchPage extends React.Component {
-  static contextType = ProfileContext;
+class Home extends React.Component {
+  static contextType = DrinkContext;
 
   handleSortAscending = () => {
     this.context.dispatch({ type: 'ascending' });
@@ -23,12 +22,12 @@ class SearchPage extends React.Component {
   };
 
   render() {
-    const { profiles = [] } = this.context;
+    const { drinks = [] } = this.context;
 
     return (
       <React.Fragment>
         <Header />
-        <SearchPageStyle>
+        <HomeStyle>
           <div className="__profile-page-toolbar">
             {toolbarOptions.map((option) => {
               const { disabled, key, alt, imgSrc } = option;
@@ -40,22 +39,21 @@ class SearchPage extends React.Component {
             })}
           </div>
           <div className="__profile-page-grid">
-            {profiles.map((profile) => (
-              <SearchCard
-                key={profile.id}
-                id={profile.id}
-                photoUrl={profile.photoUrl}
-                handle={profile.handle}
-                location={profile.location}
-                age={profile.age}
-                photoCount={profile.photoCount}
+            {drinks.map((profile) => (
+              <HomeCard
+                key={profile.idDrink}
+                id={profile.idDrink}
+                photoUrl={profile.strDrinkThumb}
+                name={profile.strDrink}
+                glass={profile.strGlass}
+                category={profile.strCategory}
               />
             ))}
           </div>
-        </SearchPageStyle>
+        </HomeStyle>
       </React.Fragment>
     );
   }
 }
 
-export default SearchPage;
+export default Home;

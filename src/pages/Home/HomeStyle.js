@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { gutters } from 'styles.js/gutters';
 
-const SearchPageStyle = styled.main`
+const HomeStyle = styled.main`
   margin: ${gutters[3]};
   .__profile-page-toolbar {
     display: flex;
@@ -14,4 +14,4 @@ const SearchPageStyle = styled.main`
   }
 `;
 
-export default SearchPageStyle;
+export default HomeStyle;

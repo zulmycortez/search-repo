@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { colors } from 'styles.js/colors';
 import { gutters } from 'styles.js/gutters';
 
-const SearchCardStyle = styled.button`
+const HomeCardStyle = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,6 +18,10 @@ const SearchCardStyle = styled.button`
     position: relative;
     width: 200px;
     height: 200px;
+    .__img {
+      width: 100%;
+      height: 100%;
+    }
   }
   .__search-card-details-wrapper {
     position: absolute;
@@ -52,4 +56,4 @@ const SearchCardStyle = styled.button`
   }
 `;
 
-export default SearchCardStyle;
+export default HomeCardStyle;
