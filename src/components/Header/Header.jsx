@@ -3,7 +3,7 @@ import HeaderStyle from './HeaderStyle';
 const Header = () => {
   return (
     <HeaderStyle>
-      <img src="./logo.svg" alt="match" width="110" />
+      <img src="./logo.svg" alt="drinks" width="60" />
     </HeaderStyle>
   );
 };

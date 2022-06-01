@@ -6,7 +6,7 @@ const HomeCard = (props) => {
   const navigate = useNavigate();
 
   const onCardClick = () => {
-    navigate(`/drink/${props.id}`);
+    navigate(`/${props.id}`);
   };
 
   return (

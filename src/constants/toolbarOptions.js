@@ -1,11 +1,5 @@
 export const toolbarOptions = [
   {
-    imgSrc: 'filter.svg',
-    alt: 'filter',
-    disabled: true,
-    key: 'filter',
-  },
-  {
     imgSrc: './ascending.svg',
     alt: 'Sort ascending',
     disabled: false,

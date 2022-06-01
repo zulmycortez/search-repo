@@ -1,6 +1,6 @@
 import { Paper, Header } from 'components';
 import LoadingStyle from './LoadingStyle';
-import { Loader } from '../svgs/Loader';
+import { Loader } from 'svgs/Loader';
 
 const Loading = () => {
   return (

@@ -1,6 +1,7 @@
-export { default as Header } from './Header';
-export { default as MinimalButton } from './MinimalButton';
-export { default as CardPaper } from './CardPaperStyle';
-export { default as Paper } from './PaperStyle';
-export { default as Error } from './Error';
-export { default as Loading } from './Loading';
+export { default as Header } from './Header/Header';
+export { default as Button } from './Button/Button';
+export { default as CardPaper } from './CardPaper/CardPaperStyle';
+export { default as Paper } from './Paper/PaperStyle';
+export { default as Error } from './Error/Error';
+export { default as Loading } from './Loading/Loading';
+export { default as Label } from './Label/LabelStyle';

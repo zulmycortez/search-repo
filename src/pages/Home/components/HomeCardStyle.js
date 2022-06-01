@@ -41,6 +41,7 @@ const HomeCardStyle = styled.button`
       display: flex;
       align-items: center;
       margin: ${gutters[1]} 0;
+      text-align: left;
     }
     .__details-text {
       display: flex;

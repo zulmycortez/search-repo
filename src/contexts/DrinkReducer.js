@@ -5,6 +5,7 @@ export const reducer = (state, action) => {
       return {
         ...state,
         drinks: action.payload,
+        initialDrinks: action.payload,
       };
     case 'SET_ERROR':
       return {
@@ -35,6 +36,15 @@ export const reducer = (state, action) => {
       return {
         ...state,
         drink: action.payload,
+      };
+    case 'SEARCH_DRINKS':
+      currentDrinks = [...state.drinks];
+      const value = action.value.toUpperCase();
+      const searched = currentDrinks.filter((d) => d.strDrink.toUpperCase().includes(value));
+      const newDrinks = value === '' ? [...state.initialDrinks] : searched;
+      return {
+        ...state,
+        drinks: newDrinks,
       };
     default:
       return state;

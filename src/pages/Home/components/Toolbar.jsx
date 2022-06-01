@@ -1,15 +1,21 @@
 import ToolbarStyle from './ToolbarStyle';
-import { MinimalButton } from 'components';
+import { Button } from 'components';
 
-const Toolbar = ({ options, events }) => {
+const Toolbar = ({ options, events, searchValue, onSearchChange }) => {
   return (
     <ToolbarStyle>
+      <input
+        placeholder="Search by drink name"
+        name="searchPage"
+        value={searchValue}
+        onChange={onSearchChange}
+      />
       {options.map((option) => {
         const { disabled, key, alt, imgSrc } = option;
         return (
-          <MinimalButton key={key} disabled={disabled} onClick={events[key]}>
+          <Button key={key} disabled={disabled} onClick={events[key]}>
             <img src={imgSrc} width={22} alt={alt}></img>
-          </MinimalButton>
+          </Button>
         );
       })}
     </ToolbarStyle>
