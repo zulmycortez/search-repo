@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { toolbarOptions } from 'constants/toolbarOptions';
-import { useDrink } from '../../context/DrinkState';
-import { getDrink, setLoading, sortAscending, sortDescending } from '../../context/DrinkAction';
+import { useDrink } from '../../contexts/DrinkState';
+import { getDrink, setLoading, sortAscending, sortDescending } from '../../contexts/DrinkAction';
 import { Header, CardPaper, Error, Loading } from 'components';
 import HomeCard from './components/HomeCard';
 import Toolbar from './components/Toolbar';

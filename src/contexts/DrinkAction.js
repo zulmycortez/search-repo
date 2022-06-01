@@ -2,7 +2,6 @@ import axios from 'axios';
 
 export const sortAscending = (dispatch) => dispatch({ type: 'SORT_ASC' });
 export const sortDescending = (dispatch) => dispatch({ type: 'SORT_DESC' });
-
 export const setLoading = (dispatch, status) => dispatch({ type: 'SET_LOADING', payload: status });
 
 export const setError = (dispatch, error) =>
