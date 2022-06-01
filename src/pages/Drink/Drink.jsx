@@ -1,20 +1,38 @@
 import { useContext, useEffect } from 'react';
-import { DrinkContext } from '../../providers/DrinksContextProvider';
+import { useDrink } from '../../contexts/DrinkState';
+import { getDrinkById, setLoading } from '../../contexts/DrinkAction';
+import { Header, CardPaper, Error, Loading } from 'components';
 import { useParams } from 'react-router-dom';
 
 const Drink = () => {
-  const context = useContext(DrinkContext);
-  let { id } = useParams();
+  const [drinkState, drinkDispatch] = useDrink();
+  const { drink, loading, error, message } = drinkState;
+  const { id } = useParams();
+
+  const getDrinkInfo = async () => {
+    await getDrinkById(drinkDispatch, id);
+    setLoading(drinkDispatch, false);
+  };
 
   useEffect(() => {
-    context.dispatch({ type: 'findProfileById', id: id });
-  }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
-  console.log('context', context);
+    getDrinkInfo();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (error) return <Error message={message} />;
+  if (loading) return <Loading />;
+  if (!drink) return 'No Drink by this ID :(';
+
   return (
-    <div>
-      <div>name</div>
-      <div>more details</div>
-    </div>
+    <>
+      <Header />
+      <div>
+        <img src={drink.strDrinkThumb} alt={drink.strDrink} />
+        Drink Name: {drink.strDrink}
+        Category: {drink.strCategory}
+        Ing: {drink.strIngredient1}
+        Directions: {drink.strInstructions}
+      </div>
+    </>
   );
 };
 

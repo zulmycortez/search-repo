@@ -10,7 +10,7 @@ export const setError = (dispatch, error) =>
     payload: { error: error.status, message: error.message },
   });
 
-const options = {
+const getRandomOptions = {
   method: 'GET',
   url: 'https://the-cocktail-db.p.rapidapi.com/randomselection.php',
   headers: {
@@ -23,12 +23,49 @@ export const getDrink = async (dispatch) => {
   setLoading(dispatch, true);
 
   await axios
-    .request(options)
+    .request(getRandomOptions)
     .then((res) => {
       const result = res.data;
       dispatch({
         type: 'SET_DRINKS',
         payload: result.drinks,
+      });
+    })
+    .catch((error) => {
+      const result = error;
+
+      dispatch({
+        type: 'SET_ERROR',
+        payload: {
+          error: true,
+          message: result,
+        },
+      });
+    });
+};
+
+const getByOptionById = (id) => {
+  return {
+    method: 'GET',
+    url: 'https://the-cocktail-db.p.rapidapi.com/lookup.php',
+    params: { i: id },
+    headers: {
+      'X-RapidAPI-Host': 'the-cocktail-db.p.rapidapi.com',
+      'X-RapidAPI-Key': 'sc6k2I2pDamshN1SQc1lHYif5cIZp1UKB8hjsnMriguKJt0jTo',
+    },
+  };
+};
+
+export const getDrinkById = async (dispatch, id) => {
+  setLoading(dispatch, true);
+
+  await axios
+    .request(getByOptionById(id))
+    .then((res) => {
+      const result = res.data.drinks[0];
+      dispatch({
+        type: 'SET_DRINK_BY_ID',
+        payload: result,
       });
     })
     .catch((error) => {

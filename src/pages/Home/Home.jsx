@@ -11,14 +11,14 @@ const Home = () => {
   const [drinkState, drinkDispatch] = useDrink();
   const { drinks, loading, error, message } = drinkState;
 
-  const getDrinkInfoHandler = async () => {
+  const getDrinks = async () => {
     await getDrink(drinkDispatch);
     setLoading(drinkDispatch, false);
   };
 
   useEffect(() => {
-    getDrinkInfoHandler();
-  }, []);
+    getDrinks();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSortAscending = () => {
     sortAscending(drinkDispatch);

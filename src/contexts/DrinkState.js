@@ -10,6 +10,7 @@ export const useDrink = () => {
 export const DrinkState = ({ children }) => {
   const initialState = {
     drinks: [],
+    drink: {},
     loading: false,
     error: false,
     message: '',

@@ -31,10 +31,10 @@ export const reducer = (state, action) => {
         ...state,
         drinks: currentDrinks,
       };
-    case 'FIND_DRINK_BY_ID':
+    case 'SET_DRINK_BY_ID':
       return {
         ...state,
-        drinks: action.payload,
+        drink: action.payload,
       };
     default:
       return state;
