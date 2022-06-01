@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { gutters } from 'styles.js/gutters';
 
-const HomeStyle = styled.main`
-  margin: ${gutters[3]};
+const ErrorStyle = styled.div`
+  padding: ${gutters[2]};
 `;
 
-export default HomeStyle;
+export default ErrorStyle;

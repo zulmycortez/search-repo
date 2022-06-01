@@ -1,59 +1,67 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { toolbarOptions } from 'constants/toolbarOptions';
-import { DrinkContext } from 'providers/DrinksContextProvider';
-import { MinimalButton, Header } from 'components';
+import { useDrink } from '../../context/DrinkState';
+import { getDrink, setLoading, sortAscending, sortDescending } from '../../context/DrinkAction';
+import { Header, CardPaper, Error, Loading } from 'components';
 import HomeCard from './components/HomeCard';
+import Toolbar from './components/Toolbar';
 import HomeStyle from './HomeStyle';
 
-class Home extends React.Component {
-  static contextType = DrinkContext;
+const Home = () => {
+  const [drinkState, drinkDispatch] = useDrink();
+  const { drinks, loading, error, message } = drinkState;
 
-  handleSortAscending = () => {
-    this.context.dispatch({ type: 'ascending' });
+  const getDrinkInfoHandler = async () => {
+    await getDrink(drinkDispatch);
+    setLoading(drinkDispatch, false);
   };
 
-  handleSortDescending = () => {
-    this.context.dispatch({ type: 'descending' });
+  useEffect(() => {
+    getDrinkInfoHandler();
+  }, []);
+
+  const handleSortAscending = () => {
+    sortAscending(drinkDispatch);
   };
 
-  toolbarEvents = {
-    sortAscending: this.handleSortAscending,
-    sortDescending: this.handleSortDescending,
+  const handleSortDescending = () => {
+    sortDescending(drinkDispatch);
   };
 
-  render() {
-    const { drinks = [] } = this.context;
+  const toolbarEvents = {
+    sortAscending: handleSortAscending,
+    sortDescending: handleSortDescending,
+  };
 
-    return (
-      <React.Fragment>
-        <Header />
-        <HomeStyle>
-          <div className="__profile-page-toolbar">
-            {toolbarOptions.map((option) => {
-              const { disabled, key, alt, imgSrc } = option;
-              return (
-                <MinimalButton key={key} disabled={disabled} onClick={this.toolbarEvents[key]}>
-                  <img src={imgSrc} width={22} alt={alt}></img>
-                </MinimalButton>
-              );
-            })}
-          </div>
-          <div className="__profile-page-grid">
-            {drinks.map((profile) => (
-              <HomeCard
-                key={profile.idDrink}
-                id={profile.idDrink}
-                photoUrl={profile.strDrinkThumb}
-                name={profile.strDrink}
-                glass={profile.strGlass}
-                category={profile.strCategory}
-              />
-            ))}
-          </div>
-        </HomeStyle>
-      </React.Fragment>
-    );
-  }
-}
+  console.log('drinks', drinks);
+  console.log('loading', loading);
+  console.log('error', error);
+  console.log('message', message);
+
+  if (error) return <Error message={message} />;
+  if (loading) return <Loading />;
+  if (drinks.length === 0) return 'No Drinks :(';
+
+  return (
+    <React.Fragment>
+      <Header />
+      <HomeStyle>
+        <Toolbar options={toolbarOptions} events={toolbarEvents} />
+        <CardPaper>
+          {drinks.map((profile) => (
+            <HomeCard
+              key={profile.idDrink}
+              id={profile.idDrink}
+              photoUrl={profile.strDrinkThumb}
+              name={profile.strDrink}
+              glass={profile.strGlass}
+              category={profile.strCategory}
+            />
+          ))}
+        </CardPaper>
+      </HomeStyle>
+    </React.Fragment>
+  );
+};
 
 export default Home;

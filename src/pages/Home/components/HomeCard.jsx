@@ -4,7 +4,6 @@ import HomeCardStyle from './HomeCardStyle';
 const HomeCard = (props) => {
   const { photoUrl = '', name = '', glass = '', category = '' } = props;
   const navigate = useNavigate();
-  const subSectionText = `${glass} • ${category}`;
 
   const onCardClick = () => {
     navigate(`/drink/${props.id}`);
@@ -12,16 +11,15 @@ const HomeCard = (props) => {
 
   return (
     <HomeCardStyle onClick={onCardClick}>
-      <div className="__search-card-content">
-        <div className="__search-card-avatar">
-          <img src={photoUrl} alt="potential date" className="__img" />
-          <div className="__search-card-details-wrapper">
-            <div className="__search-card-details">
+      <div className="__home-card-content">
+        <div className="__home-card-avatar">
+          <img src={photoUrl} alt="potential drink" className="__img" />
+          <div className="__home-card-details-wrapper">
+            <div className="__home-card-details">
               <h6 className="__details-header">{name}</h6>
-              <div className="__details-sub-header">
-                <div className="__sub-header-text">
-                  <span>{subSectionText}</span>
-                </div>
+              <div className="__details-text">
+                <div>{glass}</div>
+                <div>{category}</div>
               </div>
             </div>
           </div>

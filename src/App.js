@@ -1,19 +1,20 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Drink from 'pages/Drink/Drink';
 import Home from 'pages/Home/Home';
-import DrinksContextProvider from './providers/DrinksContextProvider';
+// import DrinksContextProvider from 'providers/DrinksContextProvider';
+import { DrinkState } from 'context/DrinkState';
 import './styles.css';
 
 const App = () => {
   return (
-    <DrinksContextProvider>
+    <DrinkState>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/drink/:id" element={<Drink />} />
         </Routes>
       </BrowserRouter>
-    </DrinksContextProvider>
+    </DrinkState>
   );
 };
 

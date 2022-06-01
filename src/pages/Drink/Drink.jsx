@@ -9,7 +9,7 @@ const Drink = () => {
   useEffect(() => {
     context.dispatch({ type: 'findProfileById', id: id });
   }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
-
+  console.log('context', context);
   return (
     <div>
       <div>name</div>
