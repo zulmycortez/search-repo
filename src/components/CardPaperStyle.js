@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gutters } from 'styles.js/gutters';
+import { gutters } from 'styles/gutters';
 
 const CardPaperStyle = styled.main`
   display: flex;

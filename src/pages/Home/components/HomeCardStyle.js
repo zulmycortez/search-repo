@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { colors } from 'styles.js/colors';
-import { gutters } from 'styles.js/gutters';
+import { colors } from 'styles/colors';
+import { gutters } from 'styles/gutters';
 
 const HomeCardStyle = styled.button`
   display: flex;
