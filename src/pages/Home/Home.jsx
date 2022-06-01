@@ -16,6 +16,7 @@ import HomeStyle from './HomeStyle';
 const Home = () => {
   const [drinkState, drinkDispatch] = useDrink();
   const [searchValue, setSearchValue] = useState('');
+  const [timer, setTimer] = useState(0);
   const { drinks, loading, error, message } = drinkState;
 
   const getDrinks = async () => {
@@ -24,8 +25,17 @@ const Home = () => {
   };
 
   useEffect(() => {
-    getDrinks();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    if (timer === 10) {
+      setTimer(0);
+    }
+    if (timer === 0) {
+      getDrinks();
+    }
+    const interval = setInterval(() => {
+      setTimer(timer + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [timer]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleSortAscending = () => {
     sortAscending(drinkDispatch);
@@ -54,6 +64,7 @@ const Home = () => {
     <React.Fragment>
       <Header />
       <HomeStyle>
+        <div>Timer: {timer}</div>
         <Toolbar
           options={toolbarOptions}
           events={toolbarEvents}
